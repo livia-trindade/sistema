@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Cadastro de médicos</title>
+    <title>Agendamento</title>
 </head>
 <body>
 <div class="navbar">
@@ -18,7 +18,7 @@
 
  </div>
 
- <h2>Cadastro de Pacientes</h2>
+ <h2>Agendamento</h2>
 
 <div class="formulario">
 
@@ -71,7 +71,7 @@
          </select>
        <p id="cep"> CEP: <br> <input type="number" name="cep"/> </p>
 
-    <input id="button" type="submit" value="Cadastrar Paciente" >
+    <input id="button" type="submit" value="Agendar consulta" >
 
 </form>
 </div>

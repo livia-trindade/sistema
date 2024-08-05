@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
     rel="stylesheet"
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    
     <title>Página inicial</title>
 </head>
 <body>
@@ -15,8 +16,8 @@
                 <img src="logo.png" class="logo">
                 <ul>
                     <li><a href="index.php">Ínicio</a></li>
-                    <li><a href="#">Agendar consulta</a></li>
-                    <li><a href="#">Cadastro de médicos</a></li>
+                    <li><a href="agenda.php">Agendar consulta</a></li>
+                    <li><a href="cadastromedico.php">Cadastro de médicos</a></li>
                     <li><a href="cadastropaciente.php">Cadastro de pacientes</a></li>
                 </ul>
 
