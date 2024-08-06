@@ -3,80 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Cadastro de médicos</title>
+    <title>Sign Up / Sign In Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styleform.css">
 </head>
 <body>
-<div class="navbar">
-                <img src="logo.png" class="logo">
-                <ul>
-                    <li><a href="index.php">Ínicio</a></li>
-                    <li><a href="agenda.php">Agendar consulta</a></li>
-                    <li><a href="cadastromedico.php">Cadastro de médicos</a></li>
-                    <li><a href="cadastropaciente.php">Cadastro de pacientes</a></li>
-                </ul>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Criar conta</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <div class="infield">
+                    <input type="text" placeholder="Name" />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="email"/>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" placeholder="Password" />
+                    <label></label>
+                </div>
+                <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your account</span>
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="email"/>
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" placeholder="Password" />
+                    <label></label>
+                </div>
+                <a href="#" class="forgot">Forgot your password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container" id="overlayCon">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button>Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button>Sign Up</button>
+                </div>
+            </div>
+            <button id="overlayBtn">Toggle</button>
+        </div>
+    </div>
 
- </div>
+    <script>
+        const container = document.getElementById('container');
+        const overlayBtn = document.getElementById('overlayBtn');
 
- <h2>Cadastro de Pacientes</h2>
-
-<div class="formulario">
-
-
-<form action="post.php" method="post"> 
-    <h3>Dados pessoais:</h3><br>
-       <p id="g"> Nome Completo: <br> <input type="text" name="nome"/> </p> 
-       <p id="g"> Email: <br> <input type="text" name="email"/> </p> 
-       <p> CPF: <br> <input type="number" name="cpf"/> </p>
-       <p id="nasc" > Data de nascimento: <br> <input type="date" name="nascimento"/> </p>
-       <p> Gênero: <br> 
-         <input type="radio" id="masc" name="genero" value="MASC">
-         <label for="masc">MASCULINO</label><br>
-         <input type="radio" id="fem" name="genero" value="FEM">
-         <label for="fem">FEMININO</label><br> <br> <br>
-
-    <h3>Endereço:</h3><br>
-       <p id="g"> Rua: <br> <input type="text" name="rua"/> </p>
-       <p id="g"> Bairro: <br> <input type="text" name="bairro"/> </p>
-       <p> Número: <br> <input type="number" name="num"/> </p>
-       <label for="estado">Estado: </label>
-          <select id="estado" name="estado">
-             <option value="RN">Acre</option>
-             <option value="AL">Alagoas</option>
-             <option value="AP">Amapá</option>
-             <option value="AM">Amazonas</option>
-             <option value="BA">Bahia</option>
-             <option value="CE">Ceará</option>
-             <option value="DF">Distrito Federal</option>
-             <option value="ES">Espírito Santo</option>
-             <option value="GO">Goiás</option>
-             <option value="MA">Maranhão</option>
-             <option value="MT">Mato Grosso</option>
-             <option value="MS">Mato Grosso do Sul</option>
-             <option value="MG">Minas Gerais</option>
-             <option value="PA">Pará</option>
-             <option value="PB">Paraíba</option>
-             <option value="PR">Paraná</option>
-             <option value="PE">Pernambuco</option>
-             <option value="PI">Piauí</option>
-             <option value="RJ">Rio de Janeiro</option>
-             <option value="RN">Rio Grande do Norte</option>
-             <option value="RS">Rio Grande do Sul</option>
-             <option value="RO">Rondônia</option>
-             <option value="RR">Roraima</option>
-             <option value="SC">Santa Catarina</option>
-             <option value="SP">São Paulo</option>
-             <option value="SE">Sergipe</option>
-             <option value="TO">Tocantins</option>
-         </select>
-       <p id="cep"> CEP: <br> <input type="number" name="cep"/> </p>
-
-    <input id="button" type="submit" value="Cadastrar Paciente" >
-
-</form>
-</div>
+        overlayBtn.addEventListener('click', () => {
+            container.classList.toggle('right-panel-active');
+        
+            overlayBtn.classList.remove('btnScaled');
+            window.requestAnimationFrame(() => {
+                overlayBtn.classList.add('btnScaled');
+            });
+        });
+    </script>
 
 
-    
 </body>
 </html>
