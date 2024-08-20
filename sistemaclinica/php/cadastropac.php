@@ -16,7 +16,8 @@
             <div class="menu">
                 <a href="index.php" class="menu-item"><img src="../imagens/home.svg" class="logo" width="35px"></a> <br>
                 <br> <br> <br>
-                <a href="perfil.php" class="menu-item"><img src="../imagens/doctor.svg" class="logo" width="35px"></a>
+                <a href="perfil.php" class="menu-item"><img src="../imagens/calendario.svg" class="logo"
+                        width="35px"></a>
                 <br> <br> <br> <br>
                 <a href="cadastropac.php" class="menu-item"><img src="../imagens/pessoaadd.svg" class="logo"
                         width="35px"></a> <br> <br> <br> <br>
@@ -28,8 +29,12 @@
         <main class="main-content-cad">
 
 
-                <h1>Cadastro de Pacientes</h1>
-                <form action="crudpaciente.php" method="POST">
+            <header class="header-cad">
+                <h1>Cadastro de Paciente</h1>
+            </header>
+
+            <form action="crudpaciente.php" method="POST">
+                <div class="form1">
                     <div class="form-group">
                         <label for="nome">Nome Completo*</label>
                         <input type="text" id="nome" name="nome" required>
@@ -59,6 +64,9 @@
                             <option value="companheiro">Companheiro(a)</option>
                         </select>
                     </div>
+                </div>
+                
+                <div class="form2">
                     <div class="form-group">
                         <label for="rg">RG*</label>
                         <input type="text" id="rg" name="rg" required>
@@ -75,86 +83,87 @@
                         <label for="naturalidade">Naturalidade*</label>
                         <input type="text" id="naturalidade" name="naturalidade" required>
                     </div>
-                    <div class="form-group full-width">
-                        <label for="endereco">Endereço Completo*</label>
-                        <input type="text" id="endereco" name="endereco" required>
-                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="telefone">Telefone*</label>
-                        <input type="tel" id="telefone" name="telefone" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="email">Email*</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label>Possui Convênio?*</label>
-                        <div class="options">
-                            <div>
-                                <input type="radio" id="convenio" name="tipo-paciente" value="convenio"
-                                    required>
-                                <label for="convenio">Sim</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="nao-possui-convenio" name="tipo-paciente"
-                                    value="nao-possui-convenio" required>
-                                <label for="nao-possui-convenio">Não</label>
-                            </div>
+                <div class="form-group full-width">
+                    <label for="endereco">Endereço Completo*</label>
+                    <input type="text" id="endereco" name="endereco" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone*</label>
+                    <input type="tel" id="telefone" name="telefone" required>
+                </div>
+                <div class="form-group full-width">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group full-width">
+                    <label>Possui Convênio?*</label>
+                    <div class="options">
+                        <div>
+                            <input type="radio" id="convenio" name="tipo-paciente" value="convenio" required>
+                            <label for="convenio">Sim</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="nao-possui-convenio" name="tipo-paciente"
+                                value="nao-possui-convenio" required>
+                            <label for="nao-possui-convenio">Não</label>
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="numerocarteira">Número da Carteirinha</label>
-                        <input type="text" id="numerocarteira" name="numerocarteira">
-                    </div>
-                 
-                    <div class="form-group">
-                        <label for="condicoes-medicas">Condições Médicas Atuais</label>
-                        <textarea id="condicoes-medicas" name="condicoes-medicas" rows="4"
-                            placeholder="Informe condições como diabetes, hipertensão, etc."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="medicacoes">Medicações em Uso</label>
-                        <textarea id="medicacoes" name="medicacoes" rows="4"
-                            placeholder="Informe as medicações, dosagens e frequência"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="historico-cirurgias">Histórico de Cirurgias</label>
-                        <textarea id="historico-cirurgias" name="historico-cirurgias" rows="4"
-                            placeholder="Informe cirurgias anteriores e datas"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="alergias">Alergias</label>
-                        <textarea id="alergias" name="alergias" rows="4"
-                            placeholder="Informe alergias alimentares, medicamentosas, etc."></textarea>
-                    </div>
-                   
-                    <div class="form-group">
-                        <label for="contato-emergencia">Contato de Emergência*</label>
-                        <input type="text" id="contato-emergencia" name="contato-emergencia" required
-                            placeholder="Nome, telefone e relação com o paciente">
-                    </div>
-                    <div class="form-group">
-                        <label for="tipo-sanguineo">Tipo Sanguíneo*</label>
-                        <select id="tipo-sanguineo" name="tipo-sanguineo" required>
-                            <option value="" disabled selected>Selecione o tipo sanguíneo</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                        </select>
-                    </div>
-                    
-                   
-                        <button type="submit">Cadastrar</button>
-                    
-                </form>
+                </div>
+
+                <div class="form-group">
+                    <label for="numerocarteira">Número da Carteirinha</label>
+                    <input type="text" id="numerocarteira" name="numerocarteira">
+                </div>
+
+                <div class="form-group">
+                    <label for="condicoes-medicas">Condições Médicas Atuais</label>
+                    <textarea id="condicoes-medicas" name="condicoes-medicas" rows="4"
+                        placeholder="Informe condições como diabetes, hipertensão, etc."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="medicacoes">Medicações em Uso</label>
+                    <textarea id="medicacoes" name="medicacoes" rows="4"
+                        placeholder="Informe as medicações, dosagens e frequência"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="historico-cirurgias">Histórico de Cirurgias</label>
+                    <textarea id="historico-cirurgias" name="historico-cirurgias" rows="4"
+                        placeholder="Informe cirurgias anteriores e datas"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="alergias">Alergias</label>
+                    <textarea id="alergias" name="alergias" rows="4"
+                        placeholder="Informe alergias alimentares, medicamentosas, etc."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="contato-emergencia">Contato de Emergência*</label>
+                    <input type="text" id="contato-emergencia" name="contato-emergencia" required
+                        placeholder="Nome, telefone e relação com o paciente">
+                </div>
+                <div class="form-group">
+                    <label for="tipo-sanguineo">Tipo Sanguíneo*</label>
+                    <select id="tipo-sanguineo" name="tipo-sanguineo" required>
+                        <option value="" disabled selected>Selecione o tipo sanguíneo</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+
+
+                <button type="submit">Cadastrar</button>
+
+            </form>
         </main>
 
 
