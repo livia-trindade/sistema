@@ -8,15 +8,19 @@
 </head>
 <body>
 
-<div class="navbar">
-        <img src="../imagens/logo.png" class="logo">
-        <ul>
-            <li><a href="index.php">Início</a></li>
-            <li><a href="agenda.php">Agendar consulta</a></li>
-            <li><a href="cadastromedico.php">Cadastro de médicos</a></li>
-            <li><a href="cadastropaciente.php">Cadastro de pacientes</a></li>
-        </ul>
-    </div>
+<aside class="sidebar">
+        <div class="menu">
+                <a href="index.php" class="menu-item"><img src="../imagens/home.svg" class="logo" width="35px"></a> <br>
+                <br> <br> <br>
+                <a href="criaconsulta.php" class="menu-item"><img src="../imagens/calendario.svg" class="logo" width="35px"></a>
+                <br> <br> <br> <br> 
+                <a href="cadastropac.php" class="menu-item"><img src="../imagens/pessoaadd.svg" class="logo"
+                        width="35px"></a> <br> <br> <br> <br>
+                <a href="cadastromedico.php" class="menu-item"><img src="../imagens/doctoradd.svg" class="logo"
+                        width="35px"></a>
+
+            </div>
+        </aside>
 
 <h3>Alterar Consulta</h3>
 

@@ -25,6 +25,10 @@
                         width="35px"></a> <br> <br> <br> <br>
                 <a href="cadastromedico.php" class="menu-item"><img src="../imagens/doctoradd.svg" class="logo"
                         width="35px"></a>
+                <a href="cadastroconvenio.php" class="menu-item"><img src="../imagens/convenio.png" class="logo"
+                        width="35px"></a>
+                <a href="cadastroconsultorio.php" class="menu-item"><img src="../imagens/consultorio.jfif" class="logo"
+                        width="35px"></a>
 
             </div>
         </aside>
@@ -35,7 +39,7 @@
             
                 <p> Sistema para gerenciar a Clínica</p>
                 <div>
-                   <a href="criaconsulta.php"> <button type="button">Visualizar Agenda</button></a>
+                   <a href="listaconsulta.php"> <button type="button">Visualizar Agenda</button></a>
                 </div>
             </div>
 

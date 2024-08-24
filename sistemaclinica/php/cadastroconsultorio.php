@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Convênio</title>
+    <title>Cadastro de Consultório</title>
 </head>
 <body>
 
@@ -22,14 +22,12 @@
             </div>
         </aside>
 
-<h3>Cadastro de Convênio</h3>
-<form class="cadastro" method="POST" action="crudconvenio.php">
-    <input type="text" name="nome" placeholder="Nome do Convênio" required>
-    <textarea name="descricao" placeholder="Descrição do Convênio"></textarea>
+<h3>Cadastro de Consultório</h3>
+<form class="cadastro" method="POST" action="crudconsultorio.php">
+    <input type="number" name="numero" placeholder="Número do Consultório" required>
     <input type="tel" name="telefone" placeholder="Telefone">
-    <input type="email" name="email" placeholder="E-mail">
-    <input type="url" name="site" placeholder="Site">
-    <input type="submit" value="Cadastrar Convênio">
+    <input type="text" name="endereco" placeholder="Endereco">
+    <input type="submit" value="Cadastrar Consultório">
 </form>
 
 </body>

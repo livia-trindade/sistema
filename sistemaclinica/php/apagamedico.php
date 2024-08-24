@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="..css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deletar Médico</title>
-</head>
-<body>
 <?php
-    require_once("conexao.php");
+require_once('conexao.php');
 
-    $id = $_POST['id'];
+// Recebe o ID do médico a ser excluído
+$id = $_POST['id'];
 
-    $sql = "DELETE FROM medico WHERE id = :id";
-    $sqlcombanco = $conexao->prepare($sql);
-    $sqlcombanco->bindParam(':id', $id, PDO::PARAM_INT);
+// Primeiro, exclua os horários de atendimento associados ao médico
+$sql = 'DELETE FROM horarios_atendimento WHERE medico_id = ?';
+$cmd = $conexao->prepare($sql);
+$cmd->execute([$id]);
 
-    if ($sqlcombanco->execute()) {
-        echo "<h3>Médico excluído com sucesso!</h3>";
-    } else {
-        echo "<h3>Erro!</h3> Não foi possível excluir o Médico.";
-    }
-    ?>
-    <button class="button"><a href="listamedico.php">Voltar</a></button>
-</body>
-</html>
+// Agora, exclua o médico
+$sql = 'DELETE FROM medico WHERE id = ?';
+$cmd = $conexao->prepare($sql);
+$cmd->execute([$id]);
+
+// Redirecione ou mostre uma mensagem de sucesso
+header('Location: listamedico.php');
+exit();
+?>

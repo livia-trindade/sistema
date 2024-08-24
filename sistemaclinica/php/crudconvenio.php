@@ -7,7 +7,7 @@ $telefone = $_POST['telefone'];
 $email = $_POST['email'];
 $site = $_POST['site'];
 
-$sql = "INSERT INTO convenio (nome, descricao, telefone, email, site) 
+$sql = "INSERT INTO convenio (nome, descricao, telefone, email, 'site') 
         VALUES ('$nome', '$descricao', '$telefone', '$email', '$site')";
 
 $sqlcombanco = $conexao->prepare($sql);

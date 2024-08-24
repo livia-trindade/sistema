@@ -10,7 +10,7 @@ $procedimento = $_POST['procedimento'];
 $status = $_POST['status'];  
 
 $sql = "INSERT INTO consulta (id_medico, id_paciente, data, horario, procedimento, status) 
-        VALUES ('$id_medico', '$id_paciente', '$data', '$horario', '$procedimento', '$status')";
+        VALUES ('$id_medico', '$id_paciente', '$data', '$horario', '$procedimento', '$estatus')";
 
 $sqlcombanco = $conexao->prepare($sql);
 

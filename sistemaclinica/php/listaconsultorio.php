@@ -1,6 +1,6 @@
 <?php 
 require_once('conexao.php');
-$retorno = $conexao->prepare('SELECT * FROM convenio');
+$retorno = $conexao->prepare('SELECT * FROM consultorio');
 $retorno->execute();
 ?>   
 
@@ -11,11 +11,11 @@ $retorno->execute();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <script>
-        function confirmarExclusao(nome) {
-            return confirm(' Deseja mesmo excluir os registros do convênio ' + nome + '?');
+        function confirmarExclusao(numero) {
+            return confirm(' Deseja mesmo excluir os registros do consultório ' + numero + '?');
         }
     </script>
-    <title>Lista de Convênios</title>
+    <title>Lista de Consultórios</title>
 </head>
 <body>
 <aside class="sidebar">
@@ -32,15 +32,13 @@ $retorno->execute();
             </div>
         </aside>
 
-<h3>Lista de Convênios</h3>
+<h3>Lista de Consultórios</h3>
 <table> 
     <thead>
         <tr>
-            <th>Nome</th>
-            <th>Descrição</th>
+            <th>Número</th>
             <th>Telefone</th>
-            <th>Email</th>
-            <th>Site</th>
+            <th>Endereço</th>
             <th>Alterar</th>
             <th>Excluir</th>
         </tr>
@@ -48,19 +46,17 @@ $retorno->execute();
     <tbody>
         <?php foreach($retorno->fetchAll() as $value) { ?>
             <tr>
-                <td><?php echo $value['nome'] ?></td>
-                <td><?php echo $value['descricao'] ?></td>
+                <td><?php echo $value['numero'] ?></td>
                 <td><?php echo $value['telefone'] ?></td>
-                <td><?php echo $value['email'] ?></td>
-                <td><?php echo $value['site'] ?></td>
+                <td><?php echo $value['endereco'] ?></td>
                 <td>
-                    <form method="POST" action="altconvenio.php">
+                    <form method="POST" action="altconsultorio.php">
                         <input name="id" type="hidden" value="<?php echo $value['id']; ?>"/>
                         <button class="button" type="submit">Alterar</button>
                     </form>
                 </td> 
                 <td>
-                <form method="POST" action="apagaconvenio.php" onsubmit="return confirmarExclusao('<?php echo $value['nome']; ?>')">
+                <form method="POST" action="apagaconsultorio.php" onsubmit="return confirmarExclusao('<?php echo $value['numero']; ?>')">
     <input name="id" type="hidden" value="<?php echo $value['id']; ?>"/>
     <button class="button" type="submit">Excluir</button>
 </form>

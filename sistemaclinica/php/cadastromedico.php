@@ -1,3 +1,30 @@
+<?php
+$conn = new mysqli("localhost", "root", "", "clinica");
+
+
+if ($conn->connect_error) {
+    die("Falha na conexão: " . $conn->connect_error);
+}
+
+
+$sql = "SELECT numero FROM consultorio";
+$result = $conn->query($sql);
+
+
+$consultorio = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $consultorio[] = $row['numero'];
+    }
+}
+
+$mensagem = "";
+
+
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +32,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" <link
-        rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <title>Página inicial</title>
 </head>
 
@@ -14,26 +41,19 @@
     <div class="container">
         <aside class="sidebar">
             <div class="menu">
-                <a href="index.php" class="menu-item"><img src="../imagens/home.svg" class="logo" width="35px"></a> <br>
-                <br> <br> <br>
-                <a href="perfil.php" class="menu-item"><img src="../imagens/calendario.svg" class="logo"
-                        width="35px"></a>
-                <br> <br> <br> <br>
-                <a href="cadastropac.php" class="menu-item"><img src="../imagens/pessoaadd.svg" class="logo"
-                        width="35px"></a> <br> <br> <br> <br>
-                <a href="cadastromedico.php" class="menu-item"><img src="../imagens/doctoradd.svg" class="logo"
-                        width="35px"></a>
+                <a href="index.php" class="menu-item"><img src="../imagens/home.svg" class="logo" width="35px"></a> <br><br><br><br>
+                <a href="perfil.php" class="menu-item"><img src="../imagens/calendario.svg" class="logo" width="35px"></a> <br><br><br><br>
+                <a href="cadastropac.php" class="menu-item"><img src="../imagens/pessoaadd.svg" class="logo" width="35px"></a> <br><br><br><br>
+                <a href="cadastromedico.php" class="menu-item"><img src="../imagens/doctoradd.svg" class="logo" width="35px"></a>
             </div>
         </aside>
 
         <main class="main-content-cad">
-            
-        <header class="header-cad">
-                <h1>Cadastro de Medico</h1>
+            <header class="header-cad">
+                <h1>Cadastro de Médico</h1>
             </header>
 
             <div class="formulario">
-
                 <form action="crudmedico.php" method="POST">
                     <div class="form-group">
                         <label for="nome">Nome Completo*</label>
@@ -59,29 +79,37 @@
                         <label for="endereco">Endereço Completo*</label>
                         <input type="text" id="endereco" name="endereco" required>
                     </div>
+                    
                     <div class="form-group full-width">
-                        <label for="dias-atendimento">Dias de Atendimento*</label>
-                        <input type="text" id="dias-atendimento" name="dias-atendimento"
-                            placeholder="Ex: Segunda a Sexta" required>
+                        <label for="dias-atendimento">Dias de Atendimento*</label><br>
+                        <input type="checkbox" id="segunda" name="dias-atendimento[]" value="segunda"> Segunda<br>
+                        <input type="checkbox" id="terca" name="dias-atendimento[]" value="terca"> Terça<br>
+                        <input type="checkbox" id="quarta" name="dias-atendimento[]" value="quarta"> Quarta<br>
+                        <input type="checkbox" id="quinta" name="dias-atendimento[]" value="quinta"> Quinta<br>
+                        <input type="checkbox" id="sexta" name="dias-atendimento[]" value="sexta"> Sexta<br>
+                        <input type="checkbox" id="sabado" name="dias-atendimento[]" value="sabado"> Sábado<br>
                     </div>
+
+
                     <div class="form-group full-width">
-                        <label for="horarios-atendimento">Horários de Atendimento*</label>
-                        <input type="text" id="horarios-atendimento" name="horarios-atendimento"
-                            placeholder="Ex: 8h às 18h" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="consultorio">Consultório*</label>
-                        <input type="text" id="consultorio" name="consultorio" placeholder="Ex: Consultório 101"
-                            required>
-                    </div>
+            <label for="consultorio">Consultório</label>
+            <select id="consultorio" name="consultorio" required>
+                <option value="" disabled selected>Selecione um consultório</option>
+                <?php foreach ($consultorio as $consultorio): ?>
+                    <option value="<?php echo $consultorio; ?>"><?php echo $consultorio; ?></option>
+                <?php endforeach; ?>
+
+            </select>
+        </div>
+
+               
                     <div class="form-group full-width">
                         <button type="submit">Cadastrar</button>
                     </div>
                 </form>
             </div>
         </main>
-
-
+    </div>
 </body>
 
 </html>

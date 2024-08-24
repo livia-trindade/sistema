@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Alterar Consulta</title>
+    <title>Alterar Convênio</title>
 </head>
 <body>
 <aside class="sidebar">
@@ -24,32 +24,31 @@
     require_once("conexao.php");
 
     $id = $_POST['id'];
-    $id_medico = $_POST['id_medico'];
-    $id_paciente = $_POST['id_paciente'];
-    $data = $_POST['data'];
-    $horario = $_POST['horario'];
-    $procedimento = $_POST['procedimento'];
-    $observacoes = $_POST['observacoes'];
-    $status = $_POST['status'];
+   
+    $nome = $_POST['nome'];
+    $descricao = $_POST['descricao'];
+    $telefone = $_POST['telefone'];
+    $email = $_POST['email'];
+    $site = $_POST['site'];
 
-    $sql = "UPDATE consulta
-            SET id_medico = '$id_medico',
-                id_paciente = '$id_paciente',
-                data = '$data',
-                horario = '$horario',
-                procedimento = '$procedimento',
-                observacoes = '$observacoes',
-                status = '$status'
+    $sql = "UPDATE convenio
+            SET id = '$id',
+               
+                nome = '$nome',
+                descricao= '$descricao',
+                telefone = '$telefone',
+                email = '$email'
+                'site' = '$site'
             WHERE id = '$id';";
     $sqlcombanco = $conexao->prepare($sql);
 
     if ($sqlcombanco->execute()) {
-        echo "<h3>Ok!</h3> <h3> A consulta foi alterada com sucesso! </h3> ";
+        echo "<h3>Ok!</h3> <h3> Convênio alterado com sucesso! </h3> ";
     } else {
         echo "<h3>Erro!</h3>";
     }
     ?>
-  <button class="button"><a href="listaconsultas.php">Voltar à Lista de Consultas</a></button>
+  <button class="button"><a href="listaconvenio.php">Voltar à Lista de Consultórios</a></button>
 
 </body>
 </html>

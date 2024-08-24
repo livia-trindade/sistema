@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="..css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Alterar Consulta</title>
+    <title>Deletar Convênio</title>
 </head>
 <body>
 <aside class="sidebar">
@@ -20,36 +20,21 @@
 
             </div>
         </aside>
-    <?php
+<?php
     require_once("conexao.php");
 
     $id = $_POST['id'];
-    $id_medico = $_POST['id_medico'];
-    $id_paciente = $_POST['id_paciente'];
-    $data = $_POST['data'];
-    $horario = $_POST['horario'];
-    $procedimento = $_POST['procedimento'];
-    $observacoes = $_POST['observacoes'];
-    $status = $_POST['status'];
 
-    $sql = "UPDATE consulta
-            SET id_medico = '$id_medico',
-                id_paciente = '$id_paciente',
-                data = '$data',
-                horario = '$horario',
-                procedimento = '$procedimento',
-                observacoes = '$observacoes',
-                status = '$status'
-            WHERE id = '$id';";
+    $sql = "DELETE FROM convenio WHERE id = :id";
     $sqlcombanco = $conexao->prepare($sql);
+    $sqlcombanco->bindParam(':id', $id, PDO::PARAM_INT);
 
     if ($sqlcombanco->execute()) {
-        echo "<h3>Ok!</h3> <h3> A consulta foi alterada com sucesso! </h3> ";
+        echo "<h3>Convênio excluído com sucesso!</h3>";
     } else {
-        echo "<h3>Erro!</h3>";
+        echo "<h3>Erro!</h3> Não foi possível excluir o convênio.";
     }
     ?>
-  <button class="button"><a href="listaconsultas.php">Voltar à Lista de Consultas</a></button>
-
+    <button class="button"><a href="listaconvenio.php">Voltar</a></button>
 </body>
 </html>

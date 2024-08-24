@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <di class="container">
+    <div class="container">
         <aside class="sidebar">
             <div class="menu">
                 <a href="index.php" class="menu-item"><img src="../imagens/home.svg" class="logo" width="35px"></a> <br>
