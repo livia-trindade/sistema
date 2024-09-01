@@ -1,16 +1,15 @@
-
 <?php
 require_once("conexao.php");
 
 $id_medico = $_POST['id_medico'];
 $id_paciente = $_POST['id_paciente'];
 $data = $_POST['data'];
-$horario = $_POST['horario'];
+$horario = $_POST['horario']; 
 $procedimento = $_POST['procedimento'];
 $status = $_POST['status'];  
 
 $sql = "INSERT INTO consulta (id_medico, id_paciente, data, horario, procedimento, status) 
-        VALUES ('$id_medico', '$id_paciente', '$data', '$horario', '$procedimento', '$estatus')";
+        VALUES ('$id_medico', '$id_paciente', '$data', '$horario', '$procedimento', '$status')";
 
 $sqlcombanco = $conexao->prepare($sql);
 
@@ -25,4 +24,3 @@ if ($sqlcombanco->execute()) {
     echo "</div>";
 }
 ?>
-

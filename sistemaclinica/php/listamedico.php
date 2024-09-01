@@ -1,10 +1,9 @@
 <?php 
 require_once('conexao.php');
 
-// Atualização da consulta SQL para incluir `horario_inicio` e `horario_fim`
 $sql = 'SELECT medico.*, 
-               GROUP_CONCAT(DISTINCT horarios_atendimento.dia SEPARATOR ", ") as dias,
-               GROUP_CONCAT(DISTINCT CONCAT(horarios_atendimento.horario_inicio, "-", horarios_atendimento.horario_fim) SEPARATOR ", ") as horarios 
+               GROUP_CONCAT(DISTINCT horarios_atendimento.dia ORDER BY horarios_atendimento.dia SEPARATOR ",") as dias,
+               GROUP_CONCAT(DISTINCT CONCAT(horarios_atendimento.horario_inicio, "-", horarios_atendimento.horario_fim) ORDER BY horarios_atendimento.horario_inicio SEPARATOR ",") as horarios 
         FROM medico 
         LEFT JOIN horarios_atendimento ON medico.id = horarios_atendimento.medico_id
         GROUP BY medico.id';
@@ -12,7 +11,6 @@ $sql = 'SELECT medico.*,
 $retorno = $conexao->prepare($sql);
 $retorno->execute();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,84 +162,110 @@ $retorno->execute();
             display: block;
         }
     </style>
-    <script>
+     <script>
         function confirmarExclusao(nome) {
             return confirm('ATENÇÃO: AO EXCLUIR OS REGISTROS DO MÉDICO, VOCÊ TAMBÉM EXCLUIRÁ TODAS AS CONSULTAS RELACIONADAS A ELE. Deseja mesmo excluir os registros do médico ' + nome + '?');
         }
     </script>
 </head>
 <body>
-    <aside class="sidebar">
+    <div class="container">
+        <aside class="sidebar">
         <div class="menu">
-            <a href="index.php" class="menu-item"><img src="../imagens/home.svg" class="logo" width="35px"></a>
-            <a href="criaconsulta.php" class="menu-item"><img src="../imagens/calendario.svg" class="logo" width="35px"></a>
-            <a href="cadastropac.php" class="menu-item"><img src="../imagens/pessoaadd.svg" class="logo" width="35px"></a>
-            <a href="cadastromedico.php" class="menu-item"><img src="../imagens/doctoradd.svg" class="logo" width="35px"></a>
-        </div>
-    </aside>
+                <a href="index.php" class="menu-item"><img src="../imagens/home.svg" class="logo" width="35px"></a> <br>
+                <br> <br> <br>
+                <a href="criaconsulta.php" class="menu-item"><img src="../imagens/calendario.svg" class="logo" width="35px"></a>
+                <br> <br> <br> <br> 
+                <a href="cadastropac.php" class="menu-item"><img src="../imagens/pessoaadd.svg" class="logo"
+                        width="35px"></a> 
+                        <br> <br> <br> <br>
+                <a href="cadastromedico.php" class="menu-item"><img src="../imagens/doctoradd.svg" class="logo"
+                        width="35px"></a> 
+                         <br> <br> <br> <br>
+                <a href="cadastroconvenio.php" class="menu-item"><img src="../imagens/convenio.svg" class="logo"
+                        width="35px"></a>  
+                        <br> <br> <br> <br>
+                <a href="cadastroconsultorio.php" class="menu-item"><img src="../imagens/hospital.svg" class="logo"
+                        width="35px"></a>
+            </div>
+        </aside>
 
-    <div class="main-content">
-        <h3>Lista de Médicos</h3>
-        <table> 
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>CRM</th>
-                    <th>Especialidade</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
-                    <th>Endereço</th>
-                    <th>Consultório</th>
-                    <th>Atendimento</th>
-                    <th>Alterar</th>
-                    <th>Excluir</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach($retorno->fetchAll() as $value) { ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($value['nome']); ?></td> 
-                    <td><?php echo htmlspecialchars($value['crm']); ?></td> 
-                    <td><?php echo htmlspecialchars($value['especialidade']); ?></td> 
-                    <td><?php echo htmlspecialchars($value['telefone']); ?></td> 
-                    <td><?php echo htmlspecialchars($value['email']); ?></td> 
-                    <td><?php echo htmlspecialchars($value['endereco']); ?></td> 
-                    <td><?php echo htmlspecialchars($value['consultorio']); ?></td> 
-                    <td>
-                        <div class="dropdown">
-                            <button class="dropbtn">Ver Atendimento</button>
-                            <div class="dropdown-content">
-                                <strong>Dias:</strong>
-                                <select disabled>
-                                    <?php foreach(explode(',', $value['dias']) as $dia) { ?>
-                                        <option><?php echo htmlspecialchars(trim($dia)); ?></option>
-                                    <?php } ?>
-                                </select>
-                                <strong>Horários:</strong>
-                                <select disabled>
-                                    <?php foreach(explode(',', $value['horarios']) as $horario) { ?>
-                                        <option><?php echo htmlspecialchars(trim($horario)); ?></option>
-                                    <?php } ?>
-                                </select>
+        <div class="main-content">
+            <h3>Lista de Médicos</h3>
+            <table> 
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CRM</th>
+                        <th>Especialidade</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th>Endereço</th>
+                        <th>Consultório</th>
+                        <th>Atendimento</th>
+                        <th>Alterar</th>
+                        <th>Excluir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach($retorno->fetchAll() as $value) { ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($value['nome']); ?></td> 
+                        <td><?php echo htmlspecialchars($value['crm']); ?></td> 
+                        <td><?php echo htmlspecialchars($value['especialidade']); ?></td> 
+                        <td><?php echo htmlspecialchars($value['telefone']); ?></td> 
+                        <td><?php echo htmlspecialchars($value['email']); ?></td> 
+                        <td><?php echo htmlspecialchars($value['endereco']); ?></td> 
+                        <td><?php echo htmlspecialchars($value['consultorio']); ?></td> 
+                        <td>
+                            <div class="dropdown">
+                                <button class="dropbtn">Ver Atendimento</button>
+                                <div class="dropdown-content">
+                                    <strong>Dias:</strong>
+                                    <select disabled>
+                                        <?php 
+                                        if (!empty($value['dias'])) {
+                                            $dias = explode(',', $value['dias']);
+                                            foreach($dias as $dia) { ?>
+                                                <option><?php echo htmlspecialchars(trim($dia)); ?></option>
+                                            <?php }
+                                        } else { ?>
+                                            <option>Nenhum dia cadastrado</option>
+                                        <?php } ?>
+                                    </select>
+                                    <strong>Horários:</strong>
+                                    <select disabled>
+                                        <?php 
+                                        if (!empty($value['horarios'])) {
+                                            $horarios = explode(',', $value['horarios']);
+                                            foreach($horarios as $horario) { ?>
+                                                <option><?php echo htmlspecialchars(trim($horario)); ?></option>
+                                            <?php }
+                                        } else { ?>
+                                            <option>Nenhum horário cadastrado</option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                    </td> 
-                    <td>
-                        <form method="POST" action="altmedico.php">
-                            <input name="id" type="hidden" value="<?php echo htmlspecialchars($value['id']); ?>"/>
-                            <button class="button" type="submit">Alterar</button>
-                        </form>
-                    </td> 
-                    <td>
-                        <form method="POST" action="apagamedico.php" onsubmit="return confirmarExclusao('<?php echo htmlspecialchars($value['nome']); ?>')">
-                            <input name="id" type="hidden" value="<?php echo htmlspecialchars($value['id']); ?>"/>
-                            <button class="button" type="submit">Excluir</button>
-                        </form>
-                    </td> 
-                </tr>
-            <?php } ?> 
-            </tbody>
-        </table>
+                        </td> 
+                        <td>
+                            <form method="POST" action="altmedico.php">
+                                <input name="id" type="hidden" value="<?php echo htmlspecialchars($value['id']); ?>"/>
+                                <button class="button" type="submit">Alterar</button>
+                            </form>
+                        </td> 
+                        <td>
+                            <form method="POST" action="apagamedico.php" onsubmit="return confirmarExclusao('<?php echo htmlspecialchars($value['nome']); ?>')">
+                                <input name="id" type="hidden" value="<?php echo htmlspecialchars($value['id']); ?>"/>
+                                <button class="button" type="submit">Excluir</button>
+                            </form>
+                        </td> 
+                    </tr>
+                <?php } ?> 
+                </tbody>
+            </table>
+        </div>
     </div>
+
 </body>
 </html>

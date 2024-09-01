@@ -3,12 +3,10 @@ require_once("conexao.php");
 
 $medico_id = $_GET['medico_id'] ?? null;
 
-// Verifica se o médico_id foi fornecido
 if ($medico_id === null) {
     die("Médico não especificado.");
 }
 
-// Recupera os dias de atendimento do banco de dados
 $sql = "SELECT DISTINCT dia FROM horarios_atendimento WHERE medico_id = ?";
 $stmt = $conexao->prepare($sql);
 $stmt->execute([$medico_id]);
@@ -46,9 +44,7 @@ if ($dias_atendimento === false) {
         }
     </script>
     <title>Horários de Atendimento</title>
-    <style>
-        /* Estilos omitidos para brevidade */
-    </style>
+  
 </head>
 
 <body>

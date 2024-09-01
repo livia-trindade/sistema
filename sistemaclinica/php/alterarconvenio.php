@@ -14,12 +14,19 @@
                 <a href="criaconsulta.php" class="menu-item"><img src="../imagens/calendario.svg" class="logo" width="35px"></a>
                 <br> <br> <br> <br> 
                 <a href="cadastropac.php" class="menu-item"><img src="../imagens/pessoaadd.svg" class="logo"
-                        width="35px"></a> <br> <br> <br> <br>
+                        width="35px"></a> 
+                        <br> <br> <br> <br>
                 <a href="cadastromedico.php" class="menu-item"><img src="../imagens/doctoradd.svg" class="logo"
+                        width="35px"></a> 
+                         <br> <br> <br> <br>
+                <a href="cadastroconvenio.php" class="menu-item"><img src="../imagens/convenio.svg" class="logo"
+                        width="35px"></a>  
+                        <br> <br> <br> <br>
+                <a href="cadastroconsultorio.php" class="menu-item"><img src="../imagens/hospital.svg" class="logo"
                         width="35px"></a>
-
             </div>
         </aside>
+        
     <?php
     require_once("conexao.php");
 
@@ -48,7 +55,7 @@
         echo "<h3>Erro!</h3>";
     }
     ?>
-  <button class="button"><a href="listaconvenio.php">Voltar à Lista de Consultórios</a></button>
+  <button class="button"><a href="listaconvenio.php">Voltar à Lista de Convênios</a></button>
 
 </body>
 </html>

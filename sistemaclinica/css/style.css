@@ -5,8 +5,7 @@ html {
     margin: 0;
     padding: 0;
     font-family: "Montserrat", sans-serif;
-    background-color: #f5f5f5;
-    
+    background-color: #ffffff;
 }
 
 
@@ -35,29 +34,32 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 20px, 20px, 20px, 20px, 20px, 20px, 20px;
 }
-
+    
 
 .sidebar .menu-item {
-    text-decoration: none;
-    background-color: rgba(0, 0, 0, 0.0);
-    font-size: 24px;
-    color: #fff;
-    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sidebar .menu-item:hover {
-    border-radius: 50% 20% 50% 20%;
-    padding: 20px;
-    display: inline-block;
-    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Aumenta a sombra */
+    transform: translateY(-3px);
 }
 
 .main-content {
     flex: 1;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255);
     border-radius: 10px 0px 0px 10px;
 }
 
@@ -94,6 +96,7 @@ html {
 }
 
 button {
+
     background-image: linear-gradient(to left, #007BB7, #A1CCE8, #469FD5, #004F8C, #B3E5FC);
     background-size: 500% 100%;
     animation: degrade-animado 10s infinite alternate;
@@ -304,4 +307,12 @@ form button:hover {
     background-size: 500% 100%;
     animation: degrade-animado 10s infinite alternate;
     border-radius: 10px;
+}
+
+.status-agendada {
+    color: green;
+}
+
+.status-cancelada {
+    color: red;
 }

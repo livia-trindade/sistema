@@ -1,20 +1,41 @@
 <?php
 require_once('conexao.php');
 
-// Recebe o ID do médico a ser excluído
-$id = $_POST['id'];
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
 
-// Primeiro, exclua os horários de atendimento associados ao médico
-$sql = 'DELETE FROM horarios_atendimento WHERE medico_id = ?';
-$cmd = $conexao->prepare($sql);
-$cmd->execute([$id]);
+    $consultaSql = 'SELECT COUNT(*) as total FROM consulta WHERE id_medico = :id';
+    $stmt = $conexao->prepare($consultaSql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Agora, exclua o médico
-$sql = 'DELETE FROM medico WHERE id = ?';
-$cmd = $conexao->prepare($sql);
-$cmd->execute([$id]);
+    if ($resultado['total'] > 0) {
+   
+        echo "<script>
+                alert('Não é possível excluir o médico porque ele tem consultas associadas.');
+                window.location.href = 'listamedico.php'; 
+              </script>";
+    } else {
+ 
+        $deleteSql = 'DELETE FROM medico WHERE id = :id';
+        $stmt = $conexao->prepare($deleteSql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-// Redirecione ou mostre uma mensagem de sucesso
-header('Location: listamedico.php');
-exit();
+        if ($stmt->execute()) {
+            echo "<script>
+                    alert('Médico excluído com sucesso.');
+                    window.location.href = 'listamedico.php'; 
+                  </script>";
+        } else {
+            echo "<script>
+                    alert('Erro ao excluir o médico.');
+                    window.location.href = 'listamedico.php'; 
+                  </script>";
+        }
+    }
+} else {
+
+    header('Location: listamedicos.php');
+}
 ?>

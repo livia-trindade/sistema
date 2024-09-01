@@ -1,47 +1,44 @@
 <?php
 require_once('conexao.php');
 
-// Obter todos os médicos
 $medicos = $conexao->prepare('SELECT id, nome FROM medico');
 $medicos->execute();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <title>Agendar Consulta</title>
-    <script>
-        function fetchHorarios(medicoId) {
-            if (medicoId === "") {
-                document.getElementById("horario").innerHTML = "<option value=''>Selecione um horário</option>";
-                return;
-            }
-            
-            // Fazendo uma chamada AJAX para obter horários
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "get_horarios.php?id_medico=" + medicoId, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    document.getElementById("horario").innerHTML = xhr.responseText;
-                }
-            };
-            xhr.send();
-        }
-    </script>
+ 
 </head>
 <body>
+<div class="container">
 <aside class="sidebar">
     <div class="menu">
-        <a href="index.php" class="menu-item"><img src="../imagens/home.svg" class="logo" width="35px"></a><br><br><br><br>
-        <a href="criaconsulta.php" class="menu-item"><img src="../imagens/calendario.svg" class="logo" width="35px"></a><br><br><br><br>
-        <a href="cadastropac.php" class="menu-item"><img src="../imagens/pessoaadd.svg" class="logo" width="35px"></a><br><br><br><br>
-        <a href="cadastromedico.php" class="menu-item"><img src="../imagens/doctoradd.svg" class="logo" width="35px"></a>
+    
+                <a href="index.php" class="menu-item"><img src="../imagens/home.svg" class="logo" width="35px"></a> <br>
+                <br> <br> <br>
+                <a href="criaconsulta.php" class="menu-item"><img src="../imagens/calendario.svg" class="logo" width="35px"></a>
+                <br> <br> <br> <br> 
+                <a href="cadastropac.php" class="menu-item"><img src="../imagens/pessoaadd.svg" class="logo"
+                        width="35px"></a> 
+                        <br> <br> <br> <br>
+                <a href="cadastromedico.php" class="menu-item"><img src="../imagens/doctoradd.svg" class="logo"
+                        width="35px"></a> 
+                         <br> <br> <br> <br>
+                <a href="cadastroconvenio.php" class="menu-item"><img src="../imagens/convenio.svg" class="logo"
+                        width="35px"></a>  
+                        <br> <br> <br> <br>
+                <a href="cadastroconsultorio.php" class="menu-item"><img src="../imagens/hospital.svg" class="logo"
+                        width="35px"></a>
+           
     </div>
 </aside>
 
+<main class="main-contentinicio">
 <h3>Agendar Consulta</h3>
 <form action="crudconsulta.php" method="POST">
     <div class="form-group">
@@ -78,7 +75,7 @@ $medicos->execute();
     <div class="form-group">
         <label for="horario">Horário</label>
         <select id="horario" name="horario" required>
-            <option value="" disabled selected>Selecione um horário</option>
+            <option value="" disabled selected>Selecione o horário</option>
         </select>
     </div>
 
@@ -91,5 +88,38 @@ $medicos->execute();
     
     <button type="submit">Agendar</button>
 </form>
+</div>
+</main>
 </body>
 </html>
+
+<script>
+        function fetchHorarios(medicoId) {
+            const data = document.getElementById('data').value;
+            if (medicoId === "" || data === "") {
+                document.getElementById("horario").innerHTML = "<option value=''>Selecione um horário</option>";
+                return;
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", `get_horarios.php?id_medico=${medicoId}&data=${data}`, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("horario").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+
+        // Chame a função fetchHorarios quando a data ou o médico for selecionado
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('id_medico').addEventListener('change', function() {
+                fetchHorarios(this.value);
+            });
+
+            document.getElementById('data').addEventListener('change', function() {
+                const medicoId = document.getElementById('id_medico').value;
+                fetchHorarios(medicoId);
+            });
+        });
+    </script>
